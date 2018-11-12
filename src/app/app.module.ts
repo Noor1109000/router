@@ -26,10 +26,18 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { PostsComponent } from './posts/posts.component';
 import { GithubFollowersComponent } from './github-followers/github-followers.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component'; 
+
+const routes: Routes=[
+  {path: '', component: HomeComponent},
+  {path: 'followers/:id/:username', component: GithubProfileComponent},
+  {path: 'followers', component: GithubFollowersComponent},
+  {path: 'posts', component: PostsComponent},
+  {path: '**', component: NotFoundComponent},
+]
 
 @NgModule({
   declarations: [
@@ -59,7 +67,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
+    
   ],
   providers: [
     PostService,
